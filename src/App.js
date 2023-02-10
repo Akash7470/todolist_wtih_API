@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Navbar";
 import CreateTodos from "./Components/CreateToDos";
 import Data from "./Components/Homepage";
 import UpdateModal from "./Components/UpdateToDos";
@@ -13,14 +12,12 @@ function App() {
           path="/"
           element={
             <div className="App">
-              {" "}
-              <Navbar />
               <Data />
             </div>
           }
         />
-        <Route path="create" element={<CreateTodos />} />
-        <Route path="update" element={<UpdateModal />} />
+        <Route path="/create" element={<CreateTodos />} />
+        <Route path="/update" element={<UpdateModal />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,17 +1,15 @@
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import UpdateToDos from "./UpdateToDos";
+// import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Data() {
   const [data, setData] = useState();
+  const navigate = useNavigate();
 
   //For Getting the data --
-  useEffect(() => {
-    getTodos();
-  });
-
   const getTodos = async () => {
     const res = await axios.get("http://localhost:5000/todos");
     setData(res.data);
@@ -21,12 +19,13 @@ function Data() {
   const deleteTodos = async (id) => {
     const res = await axios.delete(`http://localhost:5000/todos/${id}`);
     console.log(res + "Deleted...");
+    getTodos();
   };
 
   // For Updating the Data --
   const updateTodos = (id) => {
     localStorage.setItem("id", JSON.stringify(id));
-    return <UpdateToDos />;
+    navigate("/update");
   };
 
   // For Updating Status --
@@ -37,17 +36,25 @@ function Data() {
         title: titleToDo.data.title,
         status: "true",
       });
+      console.log("Status Done", res);
     } else {
       const titleToDo = await axios.get(`http://localhost:5000/todos/${id}`);
       const res = await axios.put(`http://localhost:5000/todos/${id}`, {
         title: titleToDo.data.title,
         status: "false",
       });
+      console.log(res);
     }
   };
 
+  useEffect(() => {
+    console.log("USE EFFECT CHAL RHA H");
+    getTodos();
+  }, []);
+
   return (
     <>
+      <Navbar />
       {data?.map((data, index) => {
         return (
           <div className="d-inline-flex flex-wrap" key={index}>
@@ -70,26 +77,25 @@ function Data() {
                 <p className="card-text d-flex justify-content-between align-items-center">
                   Status:{" "}
                   <input
-                    class="form-check-input mx-5"
+                    className="form-check-input mx-5"
                     type="checkbox"
                     id="myCheck"
                     onClick={(e) => statusCheck(e.target.checked, data.id)}
                     aria-label="Checkbox for following text input"
                   />
                 </p>
-                <a href="/update">
-                  <button
-                    type="button"
-                    className="btn btn-primary mx-2"
-                    onClick={(e) => updateTodos(data.id)}
-                  >
-                    Edit
-                  </button>
-                </a>
+                <button
+                  type="button"
+                  className="btn btn-primary mx-2"
+                  onClick={(e) => updateTodos(data.id)}
+                >
+                  Edit
+                </button>
+
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={(e) => deleteTodos(data.id)}
+                  onClick={() => deleteTodos(data.id)}
                 >
                   {" "}
                   delete

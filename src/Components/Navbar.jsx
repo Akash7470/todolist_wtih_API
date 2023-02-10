@@ -4,19 +4,16 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import ToDoBoxModal from "./CreateToDos";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-  const [openModal, setOpenModal] = React.useState(false);
+  const navigate = useNavigate();
 
-  const setOpen = () => {
-    setOpenModal(true);
-  };
   return (
     <Box sx={{ flexGrow: 1, p: 2, bgcolor: "skyblue" }}>
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit">Dashboard</Button>
+          <h2>Dashboard</h2>
           <Typography
             variant="h2"
             component="div"
@@ -24,12 +21,10 @@ export default function Navbar() {
           >
             ToDo List
           </Typography>
-          <a href="/create" style={{ textDecoration: "none", color: "#fff" }}>
-            <Button color="inherit" onClick={setOpen}>
-              Create
-            </Button>
-          </a>
-          {openModal && <ToDoBoxModal />}
+
+          <Button onClick={() => navigate("/create")} color="inherit">
+            Create
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

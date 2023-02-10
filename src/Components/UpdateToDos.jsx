@@ -23,10 +23,10 @@ const style = {
 };
 
 export default function UpdateModal() {
+  console.log("update component");
+  const [open, setOpen] = React.useState(true);
+
   const toDoId = JSON.parse(localStorage.getItem("id"));
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
 
   const { useState } = React;
   const [title, setTitle] = useState();
@@ -39,22 +39,21 @@ export default function UpdateModal() {
       title,
       status,
     });
+    console.log("Updated data", res);
   };
 
-  useEffect(async () => {
-    const toDoData = await axios.get(`http://localhost:5000/todos/${toDoId}`);
-    console.log(toDoData);
-    setTitle(toDoData?.data?.title);
-    setStatus(toDoData?.data?.status);
+  useEffect(() => {
+    const fetchData = async () => {
+      const toDoData = await axios.get(`http://localhost:5000/todos/${toDoId}`);
+      console.log(toDoData);
+      setTitle(toDoData?.data?.title);
+      setStatus(toDoData?.data?.status);
+    };
+    fetchData();
   }, []);
 
   return (
     <div>
-      {
-        (window.onload = () => {
-          handleOpen();
-        })
-      }
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
@@ -73,12 +72,11 @@ export default function UpdateModal() {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Update ToDo's here...
               </Typography>
-              <a href="/">
-                <CancelIcon
-                  sx={{ color: "#222" }}
-                  onSubmit={() => setOpen(false)}
-                />
-              </a>
+              <CancelIcon
+                sx={{ color: "#222" }}
+                onSubmit={() => setOpen(false)}
+                onClick={() => navigate("/")}
+              />
             </Toolbar>
           </AppBar>
           <form onSubmit={updateData}>

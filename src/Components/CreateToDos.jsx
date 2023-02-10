@@ -8,6 +8,7 @@ import Toolbar from "@mui/material/Toolbar";
 import TextField from "@mui/material/TextField";
 import CancelIcon from "@mui/icons-material/Cancel";
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const style = {
@@ -22,33 +23,25 @@ const style = {
 };
 
 export default function CreateModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const navigate = useNavigate();
-
-  const { useState } = React;
+  console.log("Create hoi[o0i");
+  const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState(false);
+  const navigate = useNavigate();
 
-  const postData = async (e) => {
-    e.preventDefault();
-
+  const postData = async () => {
     await axios
       .post("http://localhost:5000/todos", {
         id: Math.round(Math.random() * 10000),
         title: title,
-        status: "false",
+        status: status,
       })
-      .then((res) => console.log("Posted Data", res.data))
+      .then((res) => console.log("Created Data", res.data))
       .catch((err) => console.log("errorrrrr", err));
+    navigate(-1);
   };
   return (
     <div>
-      {
-        (window.onload = () => {
-          handleOpen();
-        })
-      }
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
@@ -67,15 +60,16 @@ export default function CreateModal() {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Add Your ToDo's here...
               </Typography>
-              <a href="/">
-                <CancelIcon
-                  sx={{ color: "#222" }}
-                  onSubmit={() => setOpen(false)}
-                />
-              </a>
+              {/* <a href="/"> */}
+              <CancelIcon
+                sx={{ color: "#222" }}
+                onSubmit={() => setOpen(false)}
+                onClick={() => navigate("/")}
+              />
+              {/* </a> */}
             </Toolbar>
           </AppBar>
-          <form onSubmit={postData}>
+          <form>
             <Typography id="modal-modal-description">
               <TextField
                 id="outlined-basic"
@@ -98,10 +92,9 @@ export default function CreateModal() {
               />
             </Typography>
             <Button
-              onClick={() => navigate(-1)}
+              onClick={postData}
               variant="contained"
               sx={{ m: "2vh", px: "4vh", mt: "3vh" }}
-              type="submit"
             >
               Save
             </Button>
