@@ -89,7 +89,7 @@ function Data() {
                   className="btn btn-primary mx-2"
                   onClick={(e) => updateTodos(data.id)}
                 >
-                  Edit
+                  Edit khub sare karoo bhaii
                 </button>
 
                 <button
