@@ -18,7 +18,7 @@ function Data() {
   // For Deleting the data --
   const deleteTodos = async (id) => {
     const res = await axios.delete(`http://localhost:5000/todos/${id}`);
-    console.log(res + "Deleted......");
+    console.log(res + "Deleted.........");
     getTodos();
   };
 
@@ -66,7 +66,7 @@ function Data() {
                   height: "2rem",
                   borderRadius: "10%",
                   border: "1px solid #222",
-                  margin: "12px",
+                  margin: "16px",
                   textAlign: "center",
                 }}
               >
