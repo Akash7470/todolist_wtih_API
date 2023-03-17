@@ -75,10 +75,10 @@ function Data() {
               <div className="card-body">
                 <h5 className="card-title">{data.title}</h5>
                 <p className="card-text d-flex justify-content-between align-items-center">
-                  Status:{" "}
+                  Status: aaaaaaaaaaaaaaaaaa{" "}
                   <input
                     className="form-check-input mx-5"
-                    type="checkbox"
+                    type="checked"
                     id="myCheck"
                     onClick={(e) => statusCheck(e.target.checked, data.id)}
                     aria-label="Checkbox for following text input"
