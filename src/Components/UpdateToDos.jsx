@@ -60,7 +60,7 @@ export default function UpdateModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AppBar position="static" sx={{ width: "26vw" }}>
+          <AppBar position="static">
             <Toolbar
               variant="dense"
               sx={{
@@ -87,7 +87,7 @@ export default function UpdateModal() {
                 placeholder="Items"
                 value={title}
                 autoComplete="Off"
-                sx={{ width: "25.75vw", mt: "2vh" }}
+                sx={{ minWidth: "100%", mt: "2vh" }}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Typography>
@@ -99,7 +99,7 @@ export default function UpdateModal() {
                 value={status}
                 autoComplete="Off"
                 varient="filled"
-                sx={{ width: "25.75vw", mt: "3vh" }}
+                sx={{ minWidth: "100%", mt: "3vh" }}
                 onChange={(e) => setStatus(e.target.value)}
               />
             </Typography>
