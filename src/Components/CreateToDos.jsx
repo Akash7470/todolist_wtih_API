@@ -48,16 +48,17 @@ export default function CreateModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AppBar position="static" sx={{ width: "26vw" }}>
+          <AppBar position="static">
             <Toolbar
               variant="dense"
               sx={{
+                width: "inherit",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
               }}
             >
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography variant="h6" component="h2">
                 Add Your ToDo's here...
               </Typography>
               {/* <a href="/"> */}
@@ -76,7 +77,7 @@ export default function CreateModal() {
                 label="Add Items here"
                 placeholder="Items"
                 autoComplete="Off"
-                sx={{ width: "25.75vw", mt: "2vh" }}
+                sx={{ minWidth: "100%", mt: "2vh" }}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Typography>
@@ -87,7 +88,7 @@ export default function CreateModal() {
                 placeholder="True/False"
                 autoComplete="Off"
                 varient="filled"
-                sx={{ width: "25.75vw", mt: "3vh" }}
+                sx={{ minWidth: "100%", mt: "3vh" }}
                 onChange={(e) => setStatus(e.target.value)}
               />
             </Typography>
