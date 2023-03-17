@@ -57,7 +57,7 @@ export default function CreateModal() {
                 justifyContent: "space-between",
               }}
             >
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography id="modal-modal-title" variant="h6" component="h3">
                 Add Your ToDo's here...
               </Typography>
               {/* <a href="/"> */}
@@ -76,7 +76,7 @@ export default function CreateModal() {
                 label="Add Items here"
                 placeholder="Items"
                 autoComplete="Off"
-                sx={{ width: "25.75vw", mt: "2vh" }}
+                sx={{ width: "25.79vw", mt: "2vh" }}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Typography>
@@ -94,7 +94,7 @@ export default function CreateModal() {
             <Button
               onClick={postData}
               variant="contained"
-              sx={{ m: "2vh", px: "4vh", mt: "3vh" }}
+              sx={{ m: "2vh", px: "5vh", mt: "3vh" }}
             >
               Save
             </Button>
