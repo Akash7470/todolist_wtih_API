@@ -48,7 +48,7 @@ export default function CreateModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AppBar position="static" sx={{ width: "30vw" }}>
+          <AppBar position="static" sx={{ width: "26vw" }}>
             <Toolbar
               variant="dense"
               sx={{
